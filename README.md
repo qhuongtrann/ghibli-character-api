@@ -1,50 +1,37 @@
 # Ghibli Character API
 
-This project is a CRUD API built with Spring Boot that stores information about Studio Ghibli side characters and spirits. It allows users to create, view, update, delete, and search for characters in a PostgreSQL database.
+This project is a Spring Boot CRUD API that stores information about Studio Ghibli side characters and spirits. Users can create, view, update, delete, and search for characters in a PostgreSQL database. The project uses Spring Data JPA, PostgreSQL (Neon), Docker, and Render.
 
-## Technologies Used
+## Character Type
 
-- Java 25
-- Spring Boot
-- Spring Data JPA
-- PostgreSQL (Neon)
-- Docker
-- Render
-- Maven
-- Postman
+The API stores information about Studio Ghibli side characters and spirits, such as Calcifer, Susuwatari (Soot Sprites), Otori-sama, and other creatures from Ghibli films.
 
-## Character Attributes
+## Entity Attributes
 
-Each character record includes:
+### GhibliCharacter
 
-- characterId
-- name
-- description
-- universe
-- species
-- role
+| Attribute | Type | Description |
+|------------|------------|------------|
+| characterId | Long | Unique ID generated automatically |
+| name | String | Character name |
+| description | String | Character description |
+| universe | String | Movie or universe the character belongs to |
+| species | String | Character species |
+| role | String | Character's role in the story |
 
 ## API Endpoints
 
-### Get all characters
+| Method | Path | Description | Success Status |
+|----------|----------|----------|----------|
+| GET | /api/characters | Get all characters | 200 OK |
+| GET | /api/characters/{id} | Get character by ID | 200 OK |
+| POST | /api/characters | Create a new character | 201 Created |
+| PUT | /api/characters/{id} | Update an existing character | 200 OK |
+| DELETE | /api/characters/{id} | Delete a character | 204 No Content |
+| GET | /api/characters?name=value | Search characters by name | 200 OK |
+| GET | /api/characters?universe=value | Search characters by universe | 200 OK |
 
-GET
-
-/api/characters
-
-### Get a character by ID
-
-GET
-
-/api/characters/{id}
-
-### Create a new character
-
-POST
-
-/api/characters
-
-Example:
+## Example POST Request
 
 ```json
 {
@@ -56,13 +43,7 @@ Example:
 }
 ```
 
-### Update a character
-
-PUT
-
-/api/characters/{id}
-
-Example:
+## Example PUT Request
 
 ```json
 {
@@ -74,42 +55,10 @@ Example:
 }
 ```
 
-### Delete a character
-
-DELETE
-
-/api/characters/{id}
-
-### Search by name
-
-GET
-
-/api/characters?name=calc
-
-### Search by universe
-
-GET
-
-/api/characters?universe=Howl's Moving Castle
-
-## Running the Project Locally
-
-Windows:
-
-```bash
-.\mvnw.cmd spring-boot:run
-```
-
-Mac/Linux:
-
-```bash
-./mvnw spring-boot:run
-```
-
-## Deployment
+## Deployed API
 
 https://ghibli-character-api.onrender.com/api/characters
 
-## About This Project
+## Cold-Start Note
 
-I chose Studio Ghibli side characters as the theme for this project because many of the smaller creatures and spirits 
+This project is deployed using Render's free tier. If the service has been idle, the first request may take up to a minute to respond while the application wakes up.
