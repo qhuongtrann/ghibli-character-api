@@ -17,7 +17,7 @@ public class GhibliCharacterService {
     public List<GhibliCharacter> search(String name, String universe) 
     {
 
-        boolean hasName = name != null && name.isBlank();
+        boolean hasName = name != null && !name.isBlank();
 
         if (hasName && universe != null) 
             {
