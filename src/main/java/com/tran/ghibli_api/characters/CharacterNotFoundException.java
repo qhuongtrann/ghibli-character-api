@@ -1,4 +1,4 @@
-package com.tran.ghibliapi.characters;
+package com.tran.ghibli_api.characters;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
