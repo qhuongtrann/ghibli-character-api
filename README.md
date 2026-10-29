@@ -1,64 +1,17 @@
-# Ghibli Character API
-
-This project is a Spring Boot CRUD API that stores information about Studio Ghibli side characters and spirits. Users can create, view, update, delete, and search for characters in a PostgreSQL database. The project uses Spring Data JPA, PostgreSQL (Neon), Docker, and Render.
-
-## Character Type
-
-The API stores information about Studio Ghibli side characters and spirits, such as Calcifer, Susuwatari (Soot Sprites), Otori-sama, and other creatures from Ghibli films.
-
-## Entity Attributes
-
-### GhibliCharacter
-
-| Attribute | Type | Description |
-|------------|------------|------------|
-| characterId | Long | Unique ID generated automatically |
-| name | String | Character name |
-| description | String | Character description |
-| universe | String | Movie or universe the character belongs to |
-| species | String | Character species |
-| role | String | Character's role in the story |
-
-## API Endpoints
-
-| Method | Path | Description | Success Status |
-|----------|----------|----------|----------|
-| GET | /api/characters | Get all characters | 200 OK |
-| GET | /api/characters/{id} | Get character by ID | 200 OK |
-| POST | /api/characters | Create a new character | 201 Created |
-| PUT | /api/characters/{id} | Update an existing character | 200 OK |
-| DELETE | /api/characters/{id} | Delete a character | 204 No Content |
-| GET | /api/characters?name=value | Search characters by name | 200 OK |
-| GET | /api/characters?universe=value | Search characters by universe | 200 OK |
-
-## Example POST Request
-
-```json
-{
+Studio Ghibli Spirits Gallery & REST APIThis project is a full-stack Spring Boot application combining a server-rendered web front end (using FreeMarker) with a RESTful CRUD API. It stores and showcases information about Studio Ghibli side characters and spirits, backed by a PostgreSQL database on Neon, containerized with Docker, and deployed on Render.Character TypeThe application features lesser-known side characters and mystical spirits from Studio Ghibli films directed by Hayao Miyazaki, such as Calcifer, Susuwatari (Soot Sprites), Otori-sama, Boh & Yu-Bird, and Warawara.Entity AttributesGhibliCharacterAttributeTypeRules / DescriptioncharacterIdLongUnique, auto-generated primary key (IDENTITY)nameStringRequired (@NotBlank) — Character or spirit namedescriptionStringRequired (@NotBlank) — Lore, backstory, and descriptionuniverseStringOptional — Movie title / universespeciesStringOptional — Character species or classificationroleStringOptional — Role in the storyimageUrlStringOptional — Image URL or local asset path for character cardsWeb App Pages (FreeMarker MVC)Route / MethodDescriptionGET / or /charactersGallery home page showing all characters as cards, with working name search and universe filterGET /characters/{id}Character details page displaying full lore, attributes, Edit button, and Delete buttonGET /aboutAbout page featuring gallery theme details and an explanation of the layered Spring Boot MVC architectureGET /characters/newForm page to add a new character to the databasePOST /charactersValidates and saves a new character, returning to the gallery with a success messageGET /characters/{id}/editPre-filled form page to edit an existing characterPOST /characters/{id}/editValidates and updates the character, returning to their details page with a success messagePOST /characters/{id}/deleteDeletes the character after confirmation and returns to the gallery with a success messageREST API Endpoints (/api/characters)MethodPathDescriptionSuccess StatusGET/api/charactersGet all characters200 OKGET/api/characters/{id}Get character by ID (returns 404 if not found)200 OKPOST/api/charactersCreate a new character (returns 400 on validation error)201 CreatedPUT/api/characters/{id}Update an existing character200 OKDELETE/api/characters/{id}Delete a character204 No ContentGET/api/characters?name=valueSearch characters by name (case-insensitive)200 OKGET/api/characters?universe=valueFilter characters by universe200 OKExample POST Request Body{
   "name": "Calcifer",
-  "description": "Fire demon who powers Howl's castle",
   "universe": "Howl's Moving Castle",
+  "role": "Castle Engine / Hearth Keeper",
   "species": "Fire Demon",
-  "role": "Castle Engine"
+  "imageUrl": "https://pbs.twimg.com/media/F1uZkJaX0AEqLSB.jpg",
+  "description": "A sarcastic fallen star bound to Howl's heart who heats the water, powers the moving castle, and loves eating fried eggs and bacon."
 }
-```
-
-## Example PUT Request
-
-```json
-{
+Example PUT Request Body{
   "name": "Calcifer",
-  "description": "Powerful magical fire demon",
   "universe": "Howl's Moving Castle",
+  "role": "Castle Engine / Hearth Keeper",
   "species": "Fire Demon",
-  "role": "Magic Companion"
+  "imageUrl": "https://pbs.twimg.com/media/F1uZkJaX0AEqLSB.jpg",
+  "description": "Powerful magical fire demon and loyal hearth keeper."
 }
-```
-
-## Deployed API
-
-https://ghibli-character-api.onrender.com/api/characters
-
-## Cold-Start Note
-
-This project is deployed using Render's free tier. If the service has been idle, the first request may take up to a minute to respond while the application wakes up.
+Deployed LinksLive Web Gallery Home: https://ghibli-character-api.onrender.com/Live REST API: https://ghibli-character-api.onrender.com/api/charactersCold-Start NoteThis project is deployed using Render's free tier, which puts idle services to sleep. If the application has been inactive, the first request may take up to a minute to respond while the server wakes up.
